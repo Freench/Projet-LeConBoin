@@ -42,7 +42,19 @@ function addAd(){
 }
 
 function openAd(){
+    $idAdOwner= $_GET["idOwnerAd"];
+    $idAd = $_GET["idAd"];
+    $adManager = new AdManager();
+    $ad = $adManager->getAdByIdAd($idAd);
+    $categoryManager = new CategoryManager();
+    $specificitiesNames = $categoryManager->getSpecificitiesByCategory($ad['categorie']);
+    $userManager = new UserManager();
+    $adOwner = $userManager->getUserById($idAdOwner);
+    $adDetails = $adManager->getAdDetails($idAd);
 
+
+
+    include('view/adPageTemplate.php');
 }
 
 function openNewCategoryPage(){
@@ -64,7 +76,7 @@ function addNewCategory(){
         return [$listSpecName, $listSpecOrder];
 
     }
-    
+
     $name_category = strip_tags($_GET["name-category"]);
     $categoryManager = new CategoryManager();
     // Vefication if category doesn't already exist   fsfgrgsergrgfserg

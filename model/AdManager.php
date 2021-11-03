@@ -73,13 +73,22 @@ class AdManager extends Db{
     }
 
     function insertAdDetails($numOrder, $value, $idAd){
-        $requete =  'INSERT INTO annoncesdetails (
+        $query =  'INSERT INTO annoncesdetails (
             num_ordre,
             valeur_ordre,
             id_annonce) VALUE (?,?,?)';
         $pdo = $this->connect();
-        $sql =$pdo ->prepare($requete);
+        $sql =$pdo ->prepare($query);
         $sql -> execute([$numOrder, $value, $idAd]);
         return $pdo->lastInsertId();
+    }
+
+    function getAdDetails($idAd){
+        $query = 'SELECT * FROM annoncesdetails WHERE id_annonce = ?';
+        $pdo = $this->connect();
+        $sql = $pdo->prepare($query);
+        $sql-> execute([$idAd]);
+        $result = $sql -> fetchAll();
+        return $result;
     }
 }

@@ -21,6 +21,7 @@
 	        $user = $query->fetch(PDO::FETCH_ASSOC);
             return $user;
         }
+
         public function insertUser($pwd){
             $mail = strip_tags($_GET['mail']);
             $pseudo = strip_tags($_GET['pseudo']);
@@ -33,4 +34,13 @@
             $query -> execute([$mail,$pseudo,$pwd]);
         }
 
+        public function getUserById($idUser){
+            $sql = 'SELECT * FROM utilisateurs WHERE id_utilisateur = :user';
+            $pdo = $this->connect();
+            $query = $pdo->prepare($sql);
+            $query->bindValue(':user', $idUser, PDO::PARAM_STR);
+            $user = $query->execute();
+	        $user = $query->fetch(PDO::FETCH_ASSOC);
+            return $user;
+        }
     }

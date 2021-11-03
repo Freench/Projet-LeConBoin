@@ -27,14 +27,13 @@ class CategoryManager extends Db{
             $sql->execute([$listSpecOrder[$i], $listSpecName[$i], $idCategory]);
         }
     }
+    function getSpecificitiesByCategory($idCategory){
+        $requete = 'SELECT * FROM donnesspecifiques WHERE id_categorie = ?';
+        $pdo = $this->connect();
+        $sql = $pdo->prepare($requete);
+        $sql-> execute([$idCategory]);
+        $result = $sql -> fetchAll();
+        return $result;
+    }
 
-
-//     function selectSpecificiteesByCategorie($id){
-//         $requete = 'SELECT * FROM donnesspecifiques WHERE id_categorie = ?';
-//         $pdo = $this->connect();
-//         $sql = $pdo->prepare($requete);
-//         $sql-> execute([$id]);
-//         $result = $sql -> fetchAll();
-//         return $result;
-//     }
 }

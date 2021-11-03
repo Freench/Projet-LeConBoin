@@ -53,12 +53,15 @@ try{
             echo "on ajoute une ad";
             addAd();
             header('location: index.php');
+
         }elseif($_GET['action'] == 'openAd'){
             echo "on visite une ad";
             openAd();
+
         }elseif($_GET['action'] == 'openNewCatergory'){
             echo "on ouvre la page new category";
             openNewCategoryPage();
+            
         }elseif($_GET['action'] == 'addNewCategory'){
             echo "on ajoute une category";
             addNewCategory();
