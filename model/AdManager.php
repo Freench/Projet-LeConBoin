@@ -41,7 +41,6 @@ class AdManager extends Db{
     }
 
     function deleteAnnonces($idAd){
-        echo"glumananananan $idAd";
         $query =  'DELETE FROM annonces WHERE id_annonce = ? ';//VALEURDANSLEBOUTTON
         $pdo = $this->connect();
         $sql =$pdo ->prepare($query);

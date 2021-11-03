@@ -12,7 +12,7 @@
             </div>
         </div>
         <h5><?= $titre ?></h5>
-        <p><?= $prix ?></p>
+        <p><?= $prix ?> €</p>
         <p><?= $localisation ?></p>
         <p><?= $description ?></p>
         </div>

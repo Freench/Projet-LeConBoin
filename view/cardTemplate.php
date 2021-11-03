@@ -6,7 +6,7 @@
         </div>
         <div class="carteContenu col-4">
             <h5 class="card-title col"> <?= $title ?> </h5>
-            <p class="card-text prixAnnonce"> <?= $price ?> </p>
+            <p class="card-text prixAnnonce"> <?= $price ?> € </p>
             <p class="card-text localisationAnnonce"> <?= $localisation ?> </p>
         </div>
         <div class="col-4 d-flex bouttonAnnonce">
