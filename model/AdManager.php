@@ -31,7 +31,7 @@ class AdManager extends Db{
         return $result;
     }
 
-    function getAdssByIdUser($idUser){
+    function getAdsByIdUser($idUser){
         $query = 'SELECT * FROM annonces WHERE id_utilisateur = ?';
         $pdo = $this->connect();
         $sql = $pdo->prepare($query);
