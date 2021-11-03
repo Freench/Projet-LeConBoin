@@ -92,8 +92,9 @@ form{
 }
 
 .card{
-    width: 100%;
+    width: 80%;
     margin: 20px auto;
+    padding: 20px;
 }
 
 .bouttonAnnonce{
