@@ -26,7 +26,7 @@ try{
 
         }elseif($_GET['action'] == 'openSignIn'){
             pageSignIn();
-            // header('location: index.php');
+            // header 'location: index.php';
 
         }elseif($_GET['action'] == 'signIn'){
             echo "On se signIn";
