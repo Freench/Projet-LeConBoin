@@ -12,8 +12,6 @@ require('controller/userController.php');
 require('controller/homePage.php');
 try{
     if(isset($_GET['action'])){
-        // echo "On fait une action";
-
         if($_GET['action'] == 'login'){
             // echo "On se log";
             if (isset($_GET['mail']) && isset($_GET['pseudo']) && isset($_GET['passwd'])){
@@ -84,7 +82,6 @@ try{
 
     }else{
         homePage();
-        // echo "On affiche home page ";
     }
 
 }
