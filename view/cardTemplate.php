@@ -11,7 +11,7 @@
         </div>
         <div class="col-4 d-flex bouttonAnnonce">
             <form method="GET" action="index.php">
-                <button name="voirAnnonce" type="action" class="btn btn-primary" value="openAd">Voir l'annonce</button>
+                <button name="action" type="submit" class="btn btn-primary" value="openAd">Voir l'annonce</button>
                 <input type="hidden" name="idOwnerAd" value=" <?= $idOwnerAd ?> ">
                 <input type="hidden" name="idAd" value=" <?= $idAd ?> ">
             </form>

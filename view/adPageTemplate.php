@@ -2,13 +2,13 @@
 
 <?php ob_start(); ?>
 
-<div class="container">
+<div id="boxAnnonce" class="container">
     <div class="col-md-8 infoAnnonce">
         <div id="photoAnnonce" class="row">
             <div class="col-md-8"><img src="../upload" alt="une Image" height="20vh" width="75%"></div>
             <div id="blockAnnonceur" class="col-md-4">
-                <button id="btUtilisateur" class="btn btn-light" href="index.php?action=openUserPage"><?= $pseudo ?></button>
-                <button class="btn btn-light"><?= $mail ?></button>
+                <button id="btUtilisateur" class="btn btn-secondary" href="index.php?action=openUserPage"><?= $pseudo ?></button>
+                <button class="btn btn-secondary"><?= $mail ?></button>
             </div>
         </div>
         <h5><?= $titre ?></h5>
@@ -19,11 +19,12 @@
     </div>
 </div>
 
-<div class="container">
-    <div id="specificiteAnnonce" class="col-md-3">
+<div class="container blockDetails">
+    <div id="specificiteAnnonce" class="row">
         <?php
         for($i=0;$i<count($specificitiesNames);$i++){
-            echo $specificitiesNames[$i]['nom_data'].' : '.$adDetails[$i]['valeur_ordre'].'<br>';
+            // echo $specificitiesNames[$i]['nom_data'].' : '.$adDetails[$i]['valeur_ordre'].'<br>';
+            echo '<div class="col-md-2 descriptionAnnonce"><span class="specificitees">'. $specificitiesNames[$i]['nom_data'].' : '.'</span><br>'.'<span class="details">'.$adDetails[$i]['valeur_ordre'].'</span><br></div>';
         }
         ?>
     </div>
