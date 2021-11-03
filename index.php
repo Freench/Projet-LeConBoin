@@ -52,6 +52,11 @@ try{
         }elseif($_GET['action'] == 'addAd'){
             echo "on ajoute une ad";
             addAd();
+            header('location: index.php?action=openUploadImage');
+
+        }elseif($_GET['action'] == 'openUploadImage'){
+            echo "on va sur la page ajouter une image";
+            imageUploadPage();
             header('location: index.php');
 
         }elseif($_GET['action'] == 'openAd'){
@@ -61,11 +66,15 @@ try{
         }elseif($_GET['action'] == 'openNewCatergory'){
             echo "on ouvre la page new category";
             openNewCategoryPage();
-            
+
         }elseif($_GET['action'] == 'addNewCategory'){
             echo "on ajoute une category";
             addNewCategory();
             header('location: index.php');
+
+        }elseif($_GET['action'] == 'openUserPage'){
+            echo "on va sur la page utilisateur de l'annonce";
+            openUserPage();
 
         }
 

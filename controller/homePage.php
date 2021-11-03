@@ -15,7 +15,7 @@ function homePage(){
                 $price = $result["prix_annonce"];
                 $localisation = $result["localisation_annonce"];
                 $idOwnerAd = $result["id_utilisateur"];
-                $idAnounce = $result["id_annonce"];
+                $idAd = $result["id_annonce"];
                 require('view/cardTemplate.php');
             }
         }
@@ -40,6 +40,10 @@ function addAd(){
         }
     }
 }
+function imageUploadPage(){
+    include('view/addImageView.php');
+}
+
 
 function openAd(){
     $idAdOwner= $_GET["idOwnerAd"];
@@ -47,14 +51,34 @@ function openAd(){
     $adManager = new AdManager();
     $ad = $adManager->getAdByIdAd($idAd);
     $categoryManager = new CategoryManager();
-    $specificitiesNames = $categoryManager->getSpecificitiesByCategory($ad['categorie']);
+    $specificitiesNames = $categoryManager->getSpecificitiesByCategory($ad['id_categorie']);
     $userManager = new UserManager();
     $adOwner = $userManager->getUserById($idAdOwner);
     $adDetails = $adManager->getAdDetails($idAd);
 
+    $pseudo = $adOwner['pseudo_utilisateur'];
+    $mail = $adOwner['mail_utilisateur'];
+    $titre = $ad['titre_annonce'];
+    $prix = $ad['prix_annonce'];
+    $localisation = $ad['localisation_annonce'];
+    $description = $ad['description_annonce'];
 
 
     include('view/adPageTemplate.php');
+}
+function openUserPage(){
+    $idUser = $_GET['idOwner'];
+    $adManager = new AdManager();
+    $adsOfUser = $adManager->getAdsByIdUser("blablabla"); //ffffffffffffffffffffffffffffffff
+    foreach($adsOfUser as $result){
+        $image = "";
+        $title = $result["titre_annonce"];
+        $price = $result["prix_annonce"];
+        $localisation = $result["localisation_annonce"];
+        $idOwnerAd = $result["id_utilisateur"];
+        $idAd = $result["id_annonce"];
+        require('view/cardTemplate.php');
+    }
 }
 
 function openNewCategoryPage(){
