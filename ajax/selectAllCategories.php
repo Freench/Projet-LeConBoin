@@ -1,4 +1,5 @@
 <?php
+//SelectAllCategorie
 require_once('../model/Db.php');
 $query = 'SELECT * FROM categories WHERE 1=1';
 $db = new Db();

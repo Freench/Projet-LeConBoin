@@ -1,13 +1,6 @@
 <?php $title = 'Login'; ?>
 
 <?php ob_start(); ?>
-<div class="conainer-fluid">
-    <div id="bandeau">
-        <span class="row">
-            <div id="titre">La Bonne Oca'z</div>
-        </span>
-    </div>
-</div>
 <div class="container">
     <div id="formIn" class="col-md-6">
         <div id="bonjour">Bonjour !</div>

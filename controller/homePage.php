@@ -3,7 +3,7 @@ function homePage(){
     require('view/homePageView.php');
     if(isset($_GET['action'])){
         if( $_GET['action']== 'research'){
-            echo "On recherche";
+            // echo "On recherche";
             $adManager = new AdManager();
             $category = $_GET["categorie"];
             $titleResearch = $_GET["title-research"];
@@ -98,7 +98,6 @@ function addNewCategory(){
         }
         var_dump($listSpecName);
         return [$listSpecName, $listSpecOrder];
-
     }
 
     $name_category = strip_tags($_GET["name-category"]);
@@ -111,7 +110,5 @@ function addNewCategory(){
         $categoryManager->insertAllSpecificities($lists, $newIdCategorie);
     }else{
         throw new Exception('Cette catégorie existe déjà');
-    }
-
-    
+    }    
 }
