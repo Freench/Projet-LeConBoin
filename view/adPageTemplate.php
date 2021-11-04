@@ -7,8 +7,13 @@
         <div id="photoAnnonce" class="row">
             <div class="col-md-8"><img src="../upload" alt="une Image" height="20vh" width="75%"></div>
             <div id="blockAnnonceur" class="col-md-4">
-                <button id="btUtilisateur" class="btn btn-secondary" href="index.php?action=openUserPage"><?= $pseudo ?></button>
-                <button class="btn btn-secondary"><?= $mail ?></button>
+                <form action="index.php" method="GET">
+                <input type="submit" id="btUtilisateur" class="btn btn-secondary" value=<?= $pseudo ?> ></input>
+                <input type="hidden" name="idOwner" value = <?= $_GET["idOwnerAd"] ?>></input>
+                <input type="hidden" name="action" value = "openUserPage" ?>></input>
+                <a class="btn btn-secondary"><?= $mail ?></a>
+                </form>
+               
             </div>
         </div>
         <h5><?= $titre ?></h5>
