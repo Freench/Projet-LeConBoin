@@ -57,7 +57,10 @@ try{
         }elseif($_GET['action'] == 'openUploadImage'){
             echo "on va sur la page ajouter une image";
             imageUploadPage();
-            header('location: index.php');
+
+        // }elseif($_POST['action'] == 'uploadImage'){ 
+        //     echo "on va sur la page ajouter une image";
+        //     require('controller/imageController.php');
 
         }elseif($_GET['action'] == 'openAd'){
             echo "on visite une ad";
