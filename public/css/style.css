@@ -265,3 +265,21 @@ select{
 #Nav{
     box-shadow: #cbcbcb 0px 0px 20px 0px;
 }
+
+#btMoreResearch{
+    width: max-content;
+    margin-left: 85%;
+}
+
+#btMoreResearch:hover{
+    cursor: pointer;
+}
+
+#blockMoreResearch{
+    display: none;
+}
+
+#blockMoreResearch select{
+    width: 50%;
+    margin: auto;
+}

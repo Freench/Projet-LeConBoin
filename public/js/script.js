@@ -1,6 +1,9 @@
 
 // Partie administrateur : Ajout Catégorie
 let btn_new_line = document.getElementById('btn-new-line');
+let btn_resarch_more = document.getElementById("btMoreResearch");
+let block_resarch = document.getElementById("blockMoreResearch");
+let selector = document.getElementById('selector');
 let numero = 1;
 if(btn_new_line){
     console.log("le btn est là")
@@ -90,6 +93,11 @@ function genererCategorieSelelecteur(node, allCategories){
     selecteur.id = "selector";
     selecteur.name = "categorie";
     selecteur.innerText = "Catégorie";
+    let optionPreSelected = document.createElement('option');
+    optionPreSelected.disabled = true;
+    optionPreSelected.selected = true;
+    optionPreSelected.innerText =  "Choisissez une catégorie";
+    selecteur.appendChild(optionPreSelected);
 
     for(let cat of allCategories){
         selecteur.appendChild(categorieLine(cat['id_categorie'], cat['nom_categorie']))
@@ -103,7 +111,12 @@ function genererCategorieSelelecteur(node, allCategories){
         let specificitiesSection = document.getElementById('specificites-section');
         if(specificitiesSection != undefined){
             specificitiesSection.innerHTML = "";
-            ajax('ajax/selectSpecificityOfCategory.php',  selector.options[selector.selectedIndex].value, genereFormSpecificite, document.getElementById('specificites-section') );
+            ajax('ajax/selectSpecificityOfCategory.php',  selector.options[selector.selectedIndex].value, genereFormSpecificite, specificitiesSection);
+        }
+        let block_resarch = document.getElementById("blockMoreResearch");
+        if(block_resarch != undefined){
+            block_resarch.innerHTML ="";
+            ajax('ajax/selectSpecificityOfCategory.php',  selector.options[selector.selectedIndex].value, genereChipsSpecificite, block_resarch );
         }
     })
 }
@@ -134,3 +147,18 @@ function genereFormSpecificite(node , specificites){
         node.appendChild(input)
     }
 }
+
+function genereChipsSpecificite(node , specificites){
+    for(let specificite of specificites){
+        let input = document.createElement('input');
+        input.placeholder = specificite['nom_data'];
+        input.name = "valuesSpecificities[]";
+        node.appendChild(input)
+    }
+}
+
+//Toggle More research
+btn_resarch_more.addEventListener("click", function(){
+    block_resarch.style.display = "block";
+    // genererCategorieSelelecteur(block_resarch, allCategories);
+})
