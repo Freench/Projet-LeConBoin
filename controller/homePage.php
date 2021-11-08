@@ -67,9 +67,16 @@ function openAd(){
     include('view/adPageTemplate.php');
 }
 function openUserPage(){
+ 
     $idUser = $_GET['idOwner'];
+    $userManager = new UserManager();
+    $user = $userManager->getUserById($idUser);
+    $email = $user['mail_utilisateur'];
+    $userName = $user['pseudo_utilisateur'];
+
+    require('view/userPageTemplate.php');
     $adManager = new AdManager();
-    $adsOfUser = $adManager->getAdsByIdUser("blablabla"); //ffffffffffffffffffffffffffffffff
+    $adsOfUser = $adManager->getAdsByIdUser($idUser);
     foreach($adsOfUser as $result){
         $image = "";
         $title = $result["titre_annonce"];
@@ -80,7 +87,35 @@ function openUserPage(){
         require('view/cardTemplate.php');
     }
 }
+function sendMessage(){
+    if(isset($_GET['envoyer'])) {
+        if(!empty($_GET['mail']) AND !empty($_GET['sujet']) AND !empty($_GET['message'])) {
+        $header="MIME-Version: 1.0\r\n";
+        $header.='From:'.$_GET['mail']."\n";
+        $header.='Content-Type:text/html; charset="uft-8"'."\n";
+        $header.='Content-Transfer-Encoding: 8bit';
+        $message='
+        <html>
+            <body>
+                <div align="center">
 
+                    <u>Nom de l\'expéditeur :</u>'.$_GET['sujet'].'<br />
+                    <u>Mail de l\'expéditeur :</u>'.$_GET['mail'].'<br />
+                    <br />
+                    '.nl2br($_GET['message']).'
+
+                </div>
+            </body>
+        </html>
+        ';
+        mail($_GET['email'], $_GET['sujet'], $message, $header);
+        $msg="Votre message a bien été envoyé !";
+        echo $msg;
+        } else {
+        $msg="Tous les champs doivent être complétés !";
+        }
+    }
+}
 function openNewCategoryPage(){
     include('view/newCategoryView.php');
 }
