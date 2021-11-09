@@ -71,6 +71,11 @@ class AdManager extends Db{
         return $result;
     }
 
+    function moreResearch(){
+        
+    }
+    
+
     function insertAdDetails($numOrder, $value, $idAd){
         $query =  'INSERT INTO annoncesdetails (
             num_ordre,

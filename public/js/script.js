@@ -150,15 +150,51 @@ function genereFormSpecificite(node , specificites){
 
 function genereChipsSpecificite(node , specificites){
     for(let specificite of specificites){
+        let chips = document.createElement('div');
+        chips.setAttribute('class','chip');
+        chips.setAttribute('specificite', specificite['nom_data']);
+        chips.innerHTML = specificite['nom_data'];
+        
+        let divCard = document.createElement('div');
+        divCard.setAttribute('class', 'card cardInput')
+
+        divCard.style.display = "none";
+
+        let divCardBody = document.createElement('div')
+        divCardBody.setAttribute('class', 'card-body')
+
         let input = document.createElement('input');
-        input.placeholder = specificite['nom_data'];
-        input.name = "valuesSpecificities[]";
-        node.appendChild(input)
+        let nameVal = specificite['nom_data'].toLowerCase();
+        input.setAttribute('name',nameVal)
+        input.placeholder = chips.getAttribute('specificite');
+
+        divCardBody.appendChild(input);
+        divCard.appendChild(divCardBody);
+        chips.appendChild(divCard);
+
+        chips.addEventListener("click", function(){
+            modalSpecificity(chips);
+        })
+        block_resarch.appendChild(chips);        
     }
 }
 
 //Toggle More research
 btn_resarch_more.addEventListener("click", function(){
-    block_resarch.style.display = "block";
-    // genererCategorieSelelecteur(block_resarch, allCategories);
+    block_resarch.style.display = "flex";
 })
+
+
+function modalSpecificity(node){
+    let parentChips = node.parentNode;
+    let childsOfParent = parentChips.children;
+    for(chips of childsOfParent){
+        console.log(chips);
+        chips.children[0].style.display = "none";
+        if(chips == node){
+            chips.children[0].style.display = "block";
+            console.log("bonjour les amis");
+        }
+    }
+}
+
