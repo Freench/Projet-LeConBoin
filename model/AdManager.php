@@ -71,11 +71,23 @@ class AdManager extends Db{
         return $result;
     }
 
-    function moreResearch(){
-        
-    }
+    // function moreResearch($specificites){
+    //     $condition = '';
+    //     $value = [];
+    //     foreach( $specificites as $specificite){
+    //         if(!empty($specificite)){
+    //             $condition.=' && '.$specificite['nom_data'].' LIKE ?';
+    //             array_push($value, '%'.$specificite['num_ordre'].'%');
+    //         }
+    //     }
+    //     $query = 'SELECT * FROM annoncedetails WHERE num_ordre ';
+    //     $pdo = $this->connect();
+    //     $sql =$pdo ->prepare($query);
+    //     $sql -> execute($value);
+    //     $result = $sql->fetchAll(PDO::FETCH_ASSOC);     
+    //     return $result;
+    // }
     
-
     function insertAdDetails($numOrder, $value, $idAd){
         $query =  'INSERT INTO annoncesdetails (
             num_ordre,
