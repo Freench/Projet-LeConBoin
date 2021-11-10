@@ -40,6 +40,7 @@ function addAd(){
         }
     }
 }
+
 function imageUploadPage(){
     include('view/addImageView.php');
 }

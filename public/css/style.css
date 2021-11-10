@@ -110,7 +110,17 @@ form{
 #blockAnnonceur{
     display: flex;
     flex-direction: column;
+    width: auto;
 }
+
+#blockAnnonceur input{
+    width: 100%;
+}
+
+#blockAnnonceur a{
+    width: 100%;
+}
+
 
 #navRight{
     justify-content: right;
