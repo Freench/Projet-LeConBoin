@@ -16,6 +16,11 @@ function homePage(){
                 $localisation = $result["localisation_annonce"];
                 $idOwnerAd = $result["id_utilisateur"];
                 $idAd = $result["id_annonce"];
+
+                $photoManager = new PhotoManager();
+                $photos = $photoManager->getPhotoByIdAd($idAd);
+                if(!empty($photos))
+                $photo = $photos[0]['photo'];
                 require('view/cardTemplate.php');
             }
         }
@@ -28,20 +33,21 @@ function newAdPage(){
 
 function addAd(){
     $adManager = new AdManager();
-    if (isset($_GET['titleAd']) && isset($_GET['priceAd']) && isset($_GET['photoAd']) && 
-    isset($_GET['localisationAd']) && isset($_GET['descriptionAd']) && isset($_GET['categorie'])){
+    if (isset($_POST['titleAd']) && isset($_POST['priceAd'])  && isset($_POST['localisationAd']) &&
+    isset($_POST['descriptionAd']) && isset($_POST['categorie'])){
 
         $newIdAd = $adManager->insertAd();
 
-        $valuesSpecificities = $_GET["valuesSpecificities"];
+        if(isset($_FILES['fileToUpload'])){
+            $photoManager = new PhotoManager();
+            $photoManager->insertPhoto($photoManager->uploadPhoto(), $newIdAd);
+        }
+        $valuesSpecificities = $_POST["valuesSpecificities"];
         print_r($valuesSpecificities);
         foreach($valuesSpecificities as $key => $value){
             $adManager->insertAdDetails(intval($key+1), $value, $newIdAd);
         }
     }
-}
-function imageUploadPage(){
-    include('view/addImageView.php');
 }
 
 
@@ -62,7 +68,11 @@ function openAd(){
     $prix = $ad['prix_annonce'];
     $localisation = $ad['localisation_annonce'];
     $description = $ad['description_annonce'];
-
+    
+    $photoManager = new PhotoManager();
+    $photos = $photoManager->getPhotoByIdAd($idAd);
+    if(!empty($photos))
+    $image = $photos[0]['photo'];
 
     include('view/adPageTemplate.php');
 }
@@ -84,6 +94,11 @@ function openUserPage(){
         $localisation = $result["localisation_annonce"];
         $idOwnerAd = $result["id_utilisateur"];
         $idAd = $result["id_annonce"];
+
+        $photoManager = new PhotoManager();
+            $photos = $photoManager->getPhotoByIdAd($idAd);
+            if(!empty($photos))
+            $photo = $photos[0]['photo'];
         require('view/cardTemplate.php');
     }
 }
@@ -111,6 +126,7 @@ function sendMessage(){
         mail($_GET['email'], $_GET['sujet'], $message, $header);
         $msg="Votre message a bien été envoyé !";
         echo $msg;
+        header('Refresh: 5; URL=https://francisp.promo-93.codeur.online/le-bon-coin-v2/');
         } else {
         $msg="Tous les champs doivent être complétés !";
         }
@@ -145,5 +161,5 @@ function addNewCategory(){
         $categoryManager->insertAllSpecificities($lists, $newIdCategorie);
     }else{
         throw new Exception('Cette catégorie existe déjà');
-    }    
+    }
 }

@@ -2,7 +2,7 @@
 <div class="card">
     <div class="card-body row">
         <div class="col-4">
-            <img class="card-img-top" src=" <?= $image ?> " alt="Card image cap">
+            <img class="card-img-top" src=" <?= $photo ?> " alt="Card image cap">
         </div>
         <div class="carteContenu col-4">
             <h5 class="card-title col"> <?= $title ?> </h5>

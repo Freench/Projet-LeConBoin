@@ -5,12 +5,12 @@
 <div id="boxAnnonce" class="container">
     <div class="col-md-8 infoAnnonce">
         <div id="photoAnnonce" class="row">
-            <div class="col-md-8"><img src="../upload" alt="une Image" height="20vh" width="75%"></div>
+            <div class="col-md-8"><img src= <?= $image ?> alt="une Image" height="20vh" width="75%"></div>
             <div id="blockAnnonceur" class="col-md-4">
                 <form action="index.php" method="GET">
                 <input type="submit" id="btUtilisateur" class="btn btn-secondary" value=<?= $pseudo ?> ></input>
                 <input type="hidden" name="idOwner" value = <?= $_GET["idOwnerAd"] ?>></input>
-                <input type="hidden" name="action" value = "openUserPage" ?>></input>
+                <input type="hidden" name="action" value = "openUserPage" ?></input>
                 <a class="btn btn-secondary"><?= $mail ?></a>
                 </form>
                

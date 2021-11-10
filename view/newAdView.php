@@ -3,10 +3,10 @@
 
 <div class="container">
     <div class="boxRecherche">
-        <form action="" method="GET" enctype="multipart/form-data" class="d-flex boxForm">
+        <form action="" method="POST" enctype="multipart/form-data" class="d-flex boxForm">
                 <input type="text"  name="titleAd" placeholder="Titre de l'annonce" required>
                 <input type="number"  name="priceAd" placeholder="Prix de l'article" required>
-                <input type="file" name="photoAd" accept=".png,.pdf,.jpg" placeholder="Photo de l'annonce" size=50 required>
+                <input type="file" name="fileToUpload" id="fileToUpload" accept=".png,.pdf,.jpg" placeholder="Photo de l'annonce" size=50>
                 <input type="text" name="localisationAd" placeholder="Localisation" required>
                 <input type="text" name="descriptionAd" placeholder="Description" required>
                 <div id="categorieBox">
@@ -16,7 +16,7 @@
                 <!-- <input type="number" name="categorieAnnonce" placeholder="Categorie" required> -->
                 <!-- <input type="submit" name="submit" value="OK"> -->
                 <div id="btEnvoie">
-                    <button class="btn btn-primary" type="submit" name="action" value="addAd">OK</button>
+                    <button class="btn btn-primary" type="submit" name="actionPost" value="addAd">OK</button>
                 </div>
         </form>
     </div>

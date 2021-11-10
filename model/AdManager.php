@@ -3,11 +3,11 @@
 class AdManager extends Db{
 
     function insertAd(){
-        $title = strip_tags($_GET['titleAd']);
-        $price = strip_tags($_GET['priceAd']);
-        $localisation = strip_tags($_GET['localisationAd']);
-        $description = strip_tags($_GET['descriptionAd']);
-        $category = strip_tags($_GET['categorie']);
+        $title = strip_tags($_POST['titleAd']);
+        $price = strip_tags($_POST['priceAd']);
+        $localisation = strip_tags($_POST['localisationAd']);
+        $description = strip_tags($_POST['descriptionAd']);
+        $category = strip_tags($_POST['categorie']);
 
         $requete =  'INSERT INTO annonces (
             titre_annonce,
@@ -90,4 +90,9 @@ class AdManager extends Db{
         $result = $sql -> fetchAll();
         return $result;
     }
+
+
+
+    
 }
+

@@ -8,9 +8,18 @@ require_once('model/Db.php');
 require_once('model/AdManager.php');
 require_once('model/UserManager.php');
 require_once('model/CategoryManager.php');
+require_once('model/PhotoManager.php');
 require('controller/userController.php');
 require('controller/homePage.php');
 try{
+
+    if(isset($_POST['actionPost'])){
+        if($_POST['actionPost'] == 'addAd'){
+            // echo "on ajoute une ad";
+            addAd();
+            header('location: index.php');
+        }
+    }
     if(isset($_GET['action'])){
         if($_GET['action'] == 'login'){
             // echo "On se log";
@@ -47,19 +56,6 @@ try{
         }elseif($_GET['action'] == 'openNewAd'){
             newAdPage();
 
-        }elseif($_GET['action'] == 'addAd'){
-            // echo "on ajoute une ad";
-            addAd();
-            header('location: index.php');
-
-        // }elseif($_GET['action'] == 'openUploadImage'){
-        //     // echo "on va sur la page ajouter une image";
-        //     imageUploadPage();
-
-        // }elseif($_POST['action'] == 'uploadImage'){ 
-        //     echo "on va sur la page ajouter une image";
-        //     require('controller/imageController.php');
-
         }elseif($_GET['action'] == 'openAd'){
             // echo "on visite une ad";
             openAd();
@@ -79,7 +75,7 @@ try{
 
         }elseif($_GET['action'] == 'sendMessage'){
             // echo "on envoi un message";
-            sendMessage();
+            // sendMessage();
             header('location: index.php');
         }
         
@@ -95,4 +91,3 @@ try{
 catch(Exception $e){
     echo 'Erreur : ' . $e->getMessage();
 }
-
