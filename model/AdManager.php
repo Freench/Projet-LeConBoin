@@ -72,25 +72,55 @@ class AdManager extends Db{
         return $result;
     }
 
+
+
     //function qui permet la recherche avancée
-    function moreResearch($specificites, $idAnnonce, $idCategorie){
+    function moreResearch($category, $title, $localisation, $specificityVal, $specificityOrder){
         $condition = '';
-        $value = [];
-        foreach( $specificites as $specificite){
-            if(!empty($specificite)){
-                $condition.=' && '.$specificite['nom_data'].' LIKE ?';
-                array_push($value, '%'.$specificite['num_ordre'].'%');
+        $conditionSpec = '';
+        $value=[];
+
+        if(!empty($category)){
+            $condition.= ' && id_categorie = ?';
+            array_push($value, $category);
+        }
+        if(!empty($title)){
+            $condition.=' && titre_annonce LIKE ?';
+            array_push($value, '%'.$title.'%');
+        }
+        if(!empty($localisation)){
+            $condition.=' && localisation_annonce LIKE ?';
+            array_push($value, '%'.$localisation.'%');
+        }
+
+        for($i = 0; $i<count($specificityVal) ; $i++){
+            if(!empty($specificityVal[$i]) && !empty($specificityOrder[$i])){
+                $conditionSpec.=' && (num_ordre = ?';
+                array_push($value, $specificityOrder[$i]);
+                $conditionSpec.=' && valeur_ordre LIKE ?)';
+                array_push($value, '%'.$specificityVal[$i].'%');
             }
         }
-        $query = 'SELECT * FROM annonces JOIN donnesspecifiques ON annonces.id_categorie = donnesspecifiques.id_categorie';
+        $query = 'SELECT DISTINCT id_annonce from (select * from annoncesdetails where id_annonce IN (select id_annonce from annonces where 1=1 '.$condition.')) AS detail WHERE 1=1 '.$conditionSpec;
+        print_r($value);
+        echo $query;
         $pdo = $this->connect();
         $sql =$pdo ->prepare($query);
-        $sql->bindValue(':annonces.id_categorie', $idAnnonce, PDO::PARAM_INT);
-        $sql->bindValue(':donnesspecifiques.id_categorie', $idCategorie, PDO::PARAM_INT);
         $sql -> execute($value);
-        $result = $sql->fetchAll(PDO::FETCH_ASSOC);     
+        $results = $sql->fetchAll(PDO::FETCH_ASSOC);
+        $result = [];
+        // print_r($results) ;
+
+        foreach($results as $idAd){
+            array_push($result, $this ->getAdByIdAd($idAd['id_annonce']));
+        }
+        echo "<pre>";
+        print_r($result) ;
+        echo "</pre>";
         return $result;
     }
+
+
     
     function insertAdDetails($numOrder, $value, $idAd){
         $query =  'INSERT INTO annoncesdetails (
@@ -108,6 +138,15 @@ class AdManager extends Db{
         $pdo = $this->connect();
         $sql = $pdo->prepare($query);
         $sql-> execute([$idAd]);
+        $result = $sql -> fetchAll();
+        return $result;
+    }
+
+    function getSpecificity($idAnnonce){
+        $query = 'SELECT nom_data FROM donnesspecifiques WHERE id_annonce = ?';
+        $pdo = $this->connect();
+        $sql = $pdo->prepare($query);
+        $sql-> execute([$idAnnonce]);
         $result = $sql -> fetchAll();
         return $result;
     }

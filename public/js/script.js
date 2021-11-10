@@ -163,11 +163,25 @@ function genereChipsSpecificite(node , specificites){
         let divCardBody = document.createElement('div')
         divCardBody.setAttribute('class', 'card-body')
 
-        let input = document.createElement('input');
-        let nameVal = specificite['nom_data'].toLowerCase();
-        input.setAttribute('name',nameVal)
-        input.placeholder = chips.getAttribute('specificite');
+        // let input = document.createElement('input');
+        // let nameVal = specificite['nom_data'].toLowerCase();
+        // input.setAttribute('name',nameVal)
+        // input.placeholder = chips.getAttribute('specificite');
 
+
+        let input = document.createElement('input');
+        input.placeholder = specificite['nom_data'];
+        input.name = "values[]";
+        divCardBody.appendChild(input);
+        let inputShadow = document.createElement('input');
+        inputShadow.value = specificite['num_ordre'];
+        inputShadow.name = "orders[]";
+        inputShadow.setAttribute('type','hidden');
+        divCardBody.appendChild(inputShadow);
+
+
+
+        
         divCardBody.appendChild(input);
         divCard.appendChild(divCardBody);
         chips.appendChild(divCard);

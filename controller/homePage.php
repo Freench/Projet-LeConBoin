@@ -8,7 +8,9 @@ function homePage(){
             $category = $_GET["categorie"];
             $titleResearch = $_GET["title-research"];
             $localisationResearch = $_GET["localisation-research"];
-            $researchResults = $adManager->research($category, $titleResearch, $localisationResearch);
+            $specificityVal = $_GET["values"];
+            $specificityOrder = $_GET["orders"];
+            $researchResults = $adManager->moreResearch($category, $titleResearch,  $localisationResearch, $specificityVal, $specificityOrder);
             foreach($researchResults as $result){
                 $image = "";
                 $title = $result["titre_annonce"];
