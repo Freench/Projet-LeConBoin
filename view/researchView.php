@@ -1,5 +1,5 @@
 <form method="GET" action="index.php">
-    <div class="col section-recherche">
+    <div id="blockResearch" class="col section-recherche">
         <legend id="legend" class="d-flex">Rechercher une annonce </legend>
         <div class="row justify-content-center">
             <div class="inputRecherche">
@@ -18,5 +18,9 @@
         <div id="btRecherche" class="d-flex">
             <button type="submit" class="btn btn-primary" name="action" value="research">Rechercher</button>
         </div>
+        <div id="btMoreResearch">
+            <img src="public/img/advancedResearch.png">
+        </div>
+        <div id="blockMoreResearch"><p>coucou</p></div>
     </div>
 </form>

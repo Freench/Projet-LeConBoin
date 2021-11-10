@@ -9,7 +9,7 @@ body{
 .section-recherche{
     background-color: rgba(255, 255, 255, 0.95);
     border-radius: 10px;
-    box-shadow: #cbcbcb 0px 0px 20px 0px;
+    box-shadow: #cbcbcb78 0px 0px 20px 0px;
     margin: 0 auto;
     width: 80%;
     padding-bottom: 0.5vh;
@@ -52,7 +52,7 @@ body{
     margin-left: auto;
     margin-right: auto;
     background-color: rgb(255, 255, 255);
-    box-shadow: 1px 1px 20px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: #cbcbcb78 0px 0px 20px 0px;
 }
 
 #bouttonIn{
@@ -110,7 +110,17 @@ form{
 #blockAnnonceur{
     display: flex;
     flex-direction: column;
+    width: auto;
 }
+
+#blockAnnonceur input{
+    width: 100%;
+}
+
+#blockAnnonceur a{
+    width: 100%;
+}
+
 
 #navRight{
     justify-content: right;
@@ -160,7 +170,7 @@ form{
 
 .blockDetails{
     background-color: rgb(248,249,250);
-    box-shadow: 1px 1px 20px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: #cbcbcb78 0px 0px 20px 0px;
     padding: 15px;
 }
 
@@ -171,7 +181,7 @@ form{
     margin-top: 35px;
     height: auto;
     width: 70%;
-    box-shadow:  0px 2px 20px 3px #e3e3e3;
+    box-shadow:  #cbcbcb78 0px 0px 20px 0px;
     padding-top: 5px;
     padding-bottom: 10px;
     margin-left: auto;
@@ -190,7 +200,7 @@ form{
 
 #navBarre{
     margin-bottom: 50px;
-    box-shadow : 1px 5px 20px 0px rgb(231 231 231);
+    box-shadow : #cbcbcb78 0px 0px 20px 0px;
 }
 
 .boxRecherche input{
@@ -263,5 +273,81 @@ select{
 }
 
 #Nav{
+    box-shadow: #cbcbcb78 0px 0px 20px 0px;
+}
+
+#btMoreResearch{
+    width: max-content;
+    margin-left: 85%;
+}
+
+#btMoreResearch:hover{
+    cursor: pointer;
+}
+
+#blockMoreResearch{
+    display: none;
+    height: auto;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#blockMoreResearch select{
+    width: 50%;
+    margin: auto;
+}
+
+.inputMoreResearch{
+    display: none;
+}
+
+.chip {
+    display: inline-block;
+    padding: 0 25px;
+    height: 50px;
+    font-size: 18px;
+    line-height: 50px;
+    border-radius: 25px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    margin: 3px;
+}
+
+.cardInput{
+    position: absolute;
+    width: auto;
+    margin-top: 10px;
+    z-index: 3;
     box-shadow: #cbcbcb 0px 0px 20px 0px;
+    padding: 5px;
+}
+
+.card-body input{
+    padding-left: 5px;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+
+.card-body input::placeholder{
+    padding-left: 5px;
+}
+
+#titlePageUser{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    margin-top: 30px;
+}
+
+#boxMailUser{
+    background-color: #f1f1f1;
+    width: max-content;
+    padding: 20px;
+}
+
+#textNul{
+    width: 100%;
+    padding: 0;
+    margin: 0;
 }

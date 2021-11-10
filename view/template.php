@@ -10,6 +10,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
     <link rel="icon" type="image/png" sizes="16x16" href="public/img/cactus.png" alt="Cailloux">
     <link rel="stylesheet" href="public/css/style.css">
+    <meta name="author" content="PERNOT Francis, ELAJI Aleaddine">
+    <meta name="title" content="Un site plein de surprise">
+    <meta name="description" content="Venez cher Le bon coin pour ...">
+    <meta name="keywords" content="leboncoin, achat, vente, voiture, immobilier, console, jeux-vidéo, informatique, occasion, bonnes affaires">
 </head>
 
 <body>

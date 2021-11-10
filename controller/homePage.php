@@ -5,10 +5,17 @@ function homePage(){
         if( $_GET['action']== 'research'){
             // echo "On recherche";
             $adManager = new AdManager();
-            $category = $_GET["categorie"];
-            $titleResearch = $_GET["title-research"];
-            $localisationResearch = $_GET["localisation-research"];
-            $researchResults = $adManager->research($category, $titleResearch, $localisationResearch);
+            $category = (isset( $_GET["categorie"])) ? $_GET["categorie"] : '';
+            // $category = $_GET["categorie"];
+            // $titleResearch = $_GET["title-research"];
+            // $localisationResearch = $_GET["localisation-research"];
+            // $specificityVal = $_GET["values"];
+            // $specificityOrder = $_GET["orders"];
+            $titleResearch = (isset( $_GET["title-research"])) ? $_GET["title-research"] : '';
+            $localisationResearch = (isset( $_GET["localisation-research"])) ? $_GET["localisation-research"] : '';
+            $specificityVal = (isset( $_GET["values"])) ? $_GET["values"] : [];
+            $specificityOrder = (isset( $_GET["orders"])) ? $_GET["orders"] : [];
+            $researchResults = $adManager->moreResearch($category, $titleResearch,  $localisationResearch, $specificityVal, $specificityOrder);
             foreach($researchResults as $result){
                 $image = "";
                 $title = $result["titre_annonce"];
@@ -49,6 +56,13 @@ function addAd(){
         }
     }
 }
+<<<<<<< HEAD
+=======
+
+function imageUploadPage(){
+    include('view/addImageView.php');
+}
+>>>>>>> al
 
 
 function openAd(){
@@ -103,6 +117,7 @@ function openUserPage(){
     }
 }
 function sendMessage(){
+<<<<<<< HEAD
     if(isset($_GET['envoyer'])) {
         if(!empty($_GET['mail']) AND !empty($_GET['sujet']) AND !empty($_GET['message'])) {
         $header="MIME-Version: 1.0\r\n";
@@ -130,6 +145,23 @@ function sendMessage(){
         } else {
         $msg="Tous les champs doivent être complétés !";
         }
+=======
+    if(isset($_GET['envoyer'])){
+        $to = $_GET['email']; // this is your Email address
+        $from = htmlspecialchars($_GET['mail']); // this is the sender's Email address
+        $first_name = htmlspecialchars($_GET['first_name']);
+        $subject =  htmlspecialchars($_GET['sujet']);
+        $subject2 = "Copie de votre message " ;
+        $message = $first_name . " " . " a ecrit le message suivant :" . "\n\n" . $_GET['message'];
+        $message2 = "Voici une copie de votre message " . $first_name . "\n\n" . $_GET['message'];
+        $headers = "From:" . $from;
+        $headers2 = "From:" . $to;
+        mail($to,$subject,$message,$headers);
+        mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
+        echo "Votre mail est bien envoyé, merci " . $first_name . ", je vous recontacterais dans les plus bref délais.";
+        header("Refresh:2.5; url=index.php");
+        // You can also use header('Location: thank_you.php'); to redirect to another page.
+>>>>>>> al
     }
 }
 function openNewCategoryPage(){
