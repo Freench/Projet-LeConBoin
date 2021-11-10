@@ -332,3 +332,22 @@ select{
 .card-body input::placeholder{
     padding-left: 5px;
 }
+
+#titlePageUser{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    margin-top: 30px;
+}
+
+#boxMailUser{
+    background-color: #f1f1f1;
+    width: max-content;
+    padding: 20px;
+}
+
+#textNul{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
