@@ -99,6 +99,7 @@ class AdManager extends Db{
                 array_push($value, $specificityOrder[$i]);
                 $conditionSpec.=' && valeur_ordre LIKE ?)';
                 array_push($value, '%'.$specificityVal[$i].'%');
+                
             }
         }
         $query = 'SELECT DISTINCT id_annonce from (select * from annoncesdetails where id_annonce IN (select id_annonce from annonces where 1=1 '.$condition.')) AS detail WHERE 1=1 '.$conditionSpec;
@@ -109,7 +110,6 @@ class AdManager extends Db{
         $sql -> execute($value);
         $results = $sql->fetchAll(PDO::FETCH_ASSOC);
         $result = [];
-        // print_r($results) ;
 
         foreach($results as $idAd){
             array_push($result, $this ->getAdByIdAd($idAd['id_annonce']));
