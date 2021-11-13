@@ -278,7 +278,7 @@ select{
 
 #btMoreResearch{
     width: max-content;
-    margin-left: 85%;
+    margin-left: 10%;
 }
 
 #btMoreResearch:hover{
@@ -338,6 +338,7 @@ select{
     justify-content: center;
     font-size: 30px;
     margin-top: 30px;
+    text-align: center;
 }
 
 #boxMailUser{
@@ -345,7 +346,8 @@ select{
     width: max-content;
     padding: 20px;
     box-shadow: #cbcbcb 0px 0px 20px 0px;
-
+    margin: 50px;
+    width: 70%;
 }
 
 #textNul{
@@ -362,4 +364,13 @@ select{
     justify-content: center;
     flex-direction: column;
     align-items: center;
+}
+
+#btSubmitUser{
+    margin: auto;
+    margin-top: 25px;
+}
+
+#btSubmitRecherche{
+    margin-left: 10%;
 }

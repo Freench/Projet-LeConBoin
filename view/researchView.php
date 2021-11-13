@@ -16,11 +16,12 @@
             </div>
         </div>
         <div id="btRecherche" class="d-flex">
-            <button type="submit" class="btn btn-primary" name="action" value="research">Rechercher</button>
+            <button type="submit" id="btSubmitRecherche" class="btn btn-primary" name="action" value="research">Rechercher</button>
+            <div id="btMoreResearch">
+                <img src="public/img/advancedResearch.png">
+            </div>
         </div>
-        <div id="btMoreResearch">
-            <img src="public/img/advancedResearch.png">
-        </div>
+        
         <div id="blockMoreResearch"><p>coucou</p></div>
     </div>
 </form>

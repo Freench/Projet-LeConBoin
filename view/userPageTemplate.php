@@ -3,7 +3,7 @@
 <?php ob_start(); ?>
 <div id="containerUser" class="container d-flex">
     <span id="titlePageUser">Bienvenu sur la page utilisateur de <?= $userName ?></span>
-    <div id="boxMailUser" >
+    <div id="boxMailUser">
         <form action="index.php" method="GET">
 
 
@@ -23,7 +23,7 @@
                 </label>
             </div>
 
-            <input type="submit" name="envoyer" value="Envoyer" />
+            <input type="submit" name="envoyer" value="Envoyer" id="btSubmitUser"  class="btn btn-primary d-flex"/>
             <input type="hidden" name="action" value="sendMessage" />
             <input type="hidden" name="email" value=<?= $email ?> />
         </form>
