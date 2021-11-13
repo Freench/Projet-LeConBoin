@@ -374,3 +374,11 @@ select{
 #btSubmitRecherche{
     margin-left: 10%;
 }
+
+.txtModal{
+    margin-left: 10px;
+}
+
+#btModal{
+    margin-top: 20px;
+}

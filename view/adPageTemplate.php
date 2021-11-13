@@ -13,7 +13,7 @@
                 <input type="hidden" name="action" value = "openUserPage" ?></input>
                 <a class="btn btn-secondary"><?= $mail ?></a>
                 </form>
-               
+               <?php include('adModal.php'); ?>
             </div>
         </div>
         <h5><?= $titre ?></h5>
