@@ -142,13 +142,6 @@ class AdManager extends Db{
         return $result;
     }
 
-<<<<<<< HEAD
-
-
-    
-}
-
-=======
     function getSpecificity($idAnnonce){
         $query = 'SELECT nom_data FROM donnesspecifiques WHERE id_annonce = ?';
         $pdo = $this->connect();
@@ -158,4 +151,3 @@ class AdManager extends Db{
         return $result;
     }
 }
->>>>>>> al
