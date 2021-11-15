@@ -15,7 +15,42 @@ function homePage(){
             $localisationResearch = (isset( $_GET["localisation-research"])) ? $_GET["localisation-research"] : '';
             $specificityVal = (isset( $_GET["values"])) ? $_GET["values"] : [];
             $specificityOrder = (isset( $_GET["orders"])) ? $_GET["orders"] : [];
-            $researchResults = $adManager->moreResearch($category, $titleResearch,  $localisationResearch, $specificityVal, $specificityOrder);
+            $researchAd = $adManager->research($category, $titleResearch,  $localisationResearch);
+            //Research details
+            $resultsIds = [];
+            foreach($researchAd as $ad){
+                $details = $adManager->getAdDetails($ad['id_annonce']);
+                $researchOk = true;
+
+                foreach($details as $detail){
+                    for($i = 0; $i<count($specificityVal) ; $i++){
+                        if(!empty($specificityVal[$i]) && !empty($specificityOrder[$i])){
+                            if($detail['num_ordre'] == $specificityOrder[$i] && $researchOk){
+                                if(strpos($detail['valeur_ordre'], $specificityVal[$i])===false){
+                                    $researchOk = false;
+                                }
+                            }
+                        }
+                    }
+                   
+                }
+                if($researchOk){
+                    array_push($resultsIds, $detail['id_annonce']);
+                }
+                $researchOk = true;
+                echo '<pre>';
+                print_r($resultsIds);
+                echo '</pre>';
+
+            }
+
+            $researchResults = [];
+            foreach($resultsIds as $adId){
+                array_push($researchResults, $adManager->getAdByIdAd($adId));
+            }
+
+
+            //Display
             foreach($researchResults as $result){
                 $image = "";
                 $title = $result["titre_annonce"];
@@ -56,13 +91,6 @@ function addAd(){
         }
     }
 }
-<<<<<<< HEAD
-=======
-
-function imageUploadPage(){
-    include('view/addImageView.php');
-}
->>>>>>> al
 
 
 function openAd(){
@@ -117,35 +145,6 @@ function openUserPage(){
     }
 }
 function sendMessage(){
-<<<<<<< HEAD
-    if(isset($_GET['envoyer'])) {
-        if(!empty($_GET['mail']) AND !empty($_GET['sujet']) AND !empty($_GET['message'])) {
-        $header="MIME-Version: 1.0\r\n";
-        $header.='From:'.$_GET['mail']."\n";
-        $header.='Content-Type:text/html; charset="uft-8"'."\n";
-        $header.='Content-Transfer-Encoding: 8bit';
-        $message='
-        <html>
-            <body>
-                <div align="center">
-
-                    <u>Nom de l\'expéditeur :</u>'.$_GET['sujet'].'<br />
-                    <u>Mail de l\'expéditeur :</u>'.$_GET['mail'].'<br />
-                    <br />
-                    '.nl2br($_GET['message']).'
-
-                </div>
-            </body>
-        </html>
-        ';
-        mail($_GET['email'], $_GET['sujet'], $message, $header);
-        $msg="Votre message a bien été envoyé !";
-        echo $msg;
-        header('Refresh: 5; URL=https://francisp.promo-93.codeur.online/le-bon-coin-v2/');
-        } else {
-        $msg="Tous les champs doivent être complétés !";
-        }
-=======
     if(isset($_GET['envoyer'])){
         $to = $_GET['email']; // this is your Email address
         $from = htmlspecialchars($_GET['mail']); // this is the sender's Email address
@@ -161,7 +160,6 @@ function sendMessage(){
         echo "Votre mail est bien envoyé, merci " . $first_name . ", je vous recontacterais dans les plus bref délais.";
         header("Refresh:2.5; url=index.php");
         // You can also use header('Location: thank_you.php'); to redirect to another page.
->>>>>>> al
     }
 }
 function openNewCategoryPage(){
