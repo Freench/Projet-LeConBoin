@@ -15,7 +15,42 @@ function homePage(){
             $localisationResearch = (isset( $_GET["localisation-research"])) ? $_GET["localisation-research"] : '';
             $specificityVal = (isset( $_GET["values"])) ? $_GET["values"] : [];
             $specificityOrder = (isset( $_GET["orders"])) ? $_GET["orders"] : [];
-            $researchResults = $adManager->moreResearch($category, $titleResearch,  $localisationResearch, $specificityVal, $specificityOrder);
+            $researchAd = $adManager->research($category, $titleResearch,  $localisationResearch);
+            //Research details
+            $resultsIds = [];
+            foreach($researchAd as $ad){
+                $details = $adManager->getAdDetails($ad['id_annonce']);
+                $researchOk = true;
+
+                foreach($details as $detail){
+                    for($i = 0; $i<count($specificityVal) ; $i++){
+                        if(!empty($specificityVal[$i]) && !empty($specificityOrder[$i])){
+                            if($detail['num_ordre'] == $specificityOrder[$i] && $researchOk){
+                                if(strpos($detail['valeur_ordre'], $specificityVal[$i])===false){
+                                    $researchOk = false;
+                                }
+                            }
+                        }
+                    }
+                   
+                }
+                if($researchOk){
+                    array_push($resultsIds, $detail['id_annonce']);
+                }
+                $researchOk = true;
+                echo '<pre>';
+                print_r($resultsIds);
+                echo '</pre>';
+
+            }
+
+            $researchResults = [];
+            foreach($resultsIds as $adId){
+                array_push($researchResults, $adManager->getAdByIdAd($adId));
+            }
+
+
+            //Display
             foreach($researchResults as $result){
                 $image = "";
                 $title = $result["titre_annonce"];

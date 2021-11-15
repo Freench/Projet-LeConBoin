@@ -78,7 +78,7 @@ try{
             // sendMessage();
             header('location: index.php');
         }
-        
+
     }elseif (!isset($_SESSION['connected'])){
         pageLogin();
         // echo "On charge la page login";

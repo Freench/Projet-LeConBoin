@@ -69,56 +69,57 @@ class AdManager extends Db{
         $sql =$pdo ->prepare($query);
         $sql -> execute($value);
         $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+        print_r($result);
         return $result;
     }
 
 
 
-    //function qui permet la recherche avancée
-    function moreResearch($category, $title, $localisation, $specificityVal, $specificityOrder){
-        $condition = '';
-        $conditionSpec = '';
-        $value=[];
+    // //function qui permet la recherche avancée
+    // function moreResearch($category, $title, $localisation, $specificityVal, $specificityOrder){
+    //     $condition = '';
+    //     $conditionSpec = '';
+    //     $value=[];
 
-        if(!empty($category)){
-            $condition.= ' && id_categorie = ?';
-            array_push($value, $category);
-        }
-        if(!empty($title)){
-            $condition.=' && titre_annonce LIKE ?';
-            array_push($value, '%'.$title.'%');
-        }
-        if(!empty($localisation)){
-            $condition.=' && localisation_annonce LIKE ?';
-            array_push($value, '%'.$localisation.'%');
-        }
+    //     if(!empty($category)){
+    //         $condition.= ' && id_categorie = ?';
+    //         array_push($value, $category);
+    //     }
+    //     if(!empty($title)){
+    //         $condition.=' && titre_annonce LIKE ?';
+    //         array_push($value, '%'.$title.'%');
+    //     }
+    //     if(!empty($localisation)){
+    //         $condition.=' && localisation_annonce LIKE ?';
+    //         array_push($value, '%'.$localisation.'%');
+    //     }
 
-        for($i = 0; $i<count($specificityVal) ; $i++){
-            if(!empty($specificityVal[$i]) && !empty($specificityOrder[$i])){
-                $conditionSpec.=' && (num_ordre = ?';
-                array_push($value, $specificityOrder[$i]);
-                $conditionSpec.=' && valeur_ordre LIKE ?)';
-                array_push($value, '%'.$specificityVal[$i].'%');
-                
-            }
-        }
-        $query = 'SELECT DISTINCT id_annonce from (select * from annoncesdetails where id_annonce IN (select id_annonce from annonces where 1=1 '.$condition.')) AS detail WHERE 1=1 '.$conditionSpec;
-        print_r($value);
-        echo $query;
-        $pdo = $this->connect();
-        $sql =$pdo ->prepare($query);
-        $sql -> execute($value);
-        $results = $sql->fetchAll(PDO::FETCH_ASSOC);
-        $result = [];
+    //     for($i = 0; $i<count($specificityVal) ; $i++){
+    //         if(!empty($specificityVal[$i]) && !empty($specificityOrder[$i])){
+    //             $conditionSpec.=' && (num_ordre = ?';
+    //             array_push($value, $specificityOrder[$i]);
+    //             $conditionSpec.=' && valeur_ordre LIKE ?)';
+    //             array_push($value, '%'.$specificityVal[$i].'%');
+    //         }
+    //     }
+    //     $query = 'SELECT DISTINCT id_annonce from (select * from annoncesdetails where id_annonce IN (select id_annonce from annonces where 1=1 '.$condition.')) AS detail WHERE 1=1 '.$conditionSpec;
+    //     print_r($value);
+    //     echo $query;
+    //     $pdo = $this->connect();
+    //     $sql =$pdo ->prepare($query);
+    //     $sql -> execute($value);
+    //     $results = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach($results as $idAd){
-            array_push($result, $this ->getAdByIdAd($idAd['id_annonce']));
-        }
-        echo "<pre>";
-        print_r($result) ;
-        echo "</pre>";
-        return $result;
-    }
+    //     $result = [];
+
+    //     foreach($results as $idAd){
+    //         array_push($result, $this ->getAdByIdAd($idAd['id_annonce']));
+    //     }
+    //     echo "<pre>";
+    //     print_r($result) ;
+    //     echo "</pre>";
+    //     return $result;
+    // }
 
 
     
@@ -142,12 +143,18 @@ class AdManager extends Db{
         return $result;
     }
 
+<<<<<<< HEAD
     function getSpecificity($idAnnonce){
         $query = 'SELECT nom_data FROM donnesspecifiques WHERE id_annonce = ?';
+=======
+    function getSpecificity($idAd){
+        $query = 'SELECT * FROM donnesspecifiques WHERE id_annonce = ?';
+>>>>>>> 282a164be86ff71ce74369f03ce4771558efd5d1
         $pdo = $this->connect();
         $sql = $pdo->prepare($query);
-        $sql-> execute([$idAnnonce]);
+        $sql-> execute([$idAd]);
         $result = $sql -> fetchAll();
         return $result;
     }
+
 }
