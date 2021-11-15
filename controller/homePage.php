@@ -38,9 +38,6 @@ function homePage(){
                     array_push($resultsIds, $detail['id_annonce']);
                 }
                 $researchOk = true;
-                echo '<pre>';
-                print_r($resultsIds);
-                echo '</pre>';
 
             }
 
@@ -85,7 +82,6 @@ function addAd(){
             $photoManager->insertPhoto($photoManager->uploadPhoto(), $newIdAd);
         }
         $valuesSpecificities = $_POST["valuesSpecificities"];
-        print_r($valuesSpecificities);
         foreach($valuesSpecificities as $key => $value){
             $adManager->insertAdDetails(intval($key+1), $value, $newIdAd);
         }
@@ -177,14 +173,12 @@ function addNewCategory(){
         foreach($listSpecName as $key=>$value){
             $value = strip_tags($value);
         }
-        var_dump($listSpecName);
         return [$listSpecName, $listSpecOrder];
     }
 
     $name_category = strip_tags($_GET["name-category"]);
     $categoryManager = new CategoryManager();
     // Vefication if category doesn't already exist   fsfgrgsergrgfserg
-    echo $categoryManager->getCategoryByName($name_category);
     if(empty($categoryManager->getCategoryByName($name_category))){
         $lists = verificationSpecificities();
         $newIdCategorie = $categoryManager->insertCategory();
