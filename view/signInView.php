@@ -11,9 +11,9 @@
             <input type="password" name="passwd" placeholder="Entrez votre mot de passe" value="" required>
             <button type="submit" name="action" id="bouttonIn" class="btn btn-primary" value="signIn">S'enregistrer</button>
         </form>
-    </div>
-    <div id="textSign">Déjà un compte ? 
+        <div id="textSign">Déjà un compte ? 
             <a href="index.php" id="linkSign">Se connecter</a>
+    </div>
     </div>
 </div>
 
