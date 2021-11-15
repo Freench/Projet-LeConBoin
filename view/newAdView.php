@@ -6,7 +6,7 @@
         <form action="" method="POST" enctype="multipart/form-data" class="d-flex boxForm">
                 <input type="text"  name="titleAd" placeholder="Titre de l'annonce" required>
                 <input type="number"  name="priceAd" placeholder="Prix de l'article" required>
-                <input type="file" name="fileToUpload" id="fileToUpload" accept=".png,.pdf,.jpg" placeholder="Photo de l'annonce" size=50>
+                <input type="file" multiple name="fileToUpload[]" id="fileToUpload" accept=".png,.pdf,.jpg" placeholder="Photo de l'annonce" size=50>
                 <input type="text" name="localisationAd" placeholder="Localisation" required>
                 <input type="text" name="descriptionAd" placeholder="Description" required>
                 <div id="categorieBox">

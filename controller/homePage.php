@@ -3,7 +3,6 @@ function homePage(){
     require('view/homePageView.php');
     if(isset($_GET['action'])){
         if( $_GET['action']== 'research'){
-            // echo "On recherche";
             $adManager = new AdManager();
             $category = (isset( $_GET["categorie"])) ? $_GET["categorie"] : '';
             // $category = $_GET["categorie"];
@@ -32,15 +31,11 @@ function homePage(){
                             }
                         }
                     }
-                   
                 }
                 if($researchOk){
                     array_push($resultsIds, $detail['id_annonce']);
                 }
                 $researchOk = true;
-                echo '<pre>';
-                print_r($resultsIds);
-                echo '</pre>';
 
             }
 
@@ -82,10 +77,12 @@ function addAd(){
 
         if(isset($_FILES['fileToUpload'])){
             $photoManager = new PhotoManager();
-            $photoManager->insertPhoto($photoManager->uploadPhoto(), $newIdAd);
+
+            for ($i = 0; $i<count($_FILES['fileToUpload']['name']); $i++){
+                $photoManager->insertPhoto($photoManager->uploadPhoto($i), $newIdAd);
+            }
         }
         $valuesSpecificities = $_POST["valuesSpecificities"];
-        print_r($valuesSpecificities);
         foreach($valuesSpecificities as $key => $value){
             $adManager->insertAdDetails(intval($key+1), $value, $newIdAd);
         }
@@ -113,9 +110,9 @@ function openAd(){
     
     $photoManager = new PhotoManager();
     $photos = $photoManager->getPhotoByIdAd($idAd);
-    if(!empty($photos))
-    $image = $photos[0]['photo'];
 
+    $images = $photos;
+    print_r($images);
     include('view/adPageTemplate.php');
 }
 function openUserPage(){

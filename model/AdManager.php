@@ -69,7 +69,6 @@ class AdManager extends Db{
         $sql =$pdo ->prepare($query);
         $sql -> execute($value);
         $result = $sql->fetchAll(PDO::FETCH_ASSOC);
-        print_r($result);
         return $result;
     }
 

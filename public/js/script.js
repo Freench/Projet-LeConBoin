@@ -203,12 +203,18 @@ function modalSpecificity(node){
     let parentChips = node.parentNode;
     let childsOfParent = parentChips.children;
     for(chips of childsOfParent){
-        console.log(chips);
         chips.children[0].style.display = "none";
         if(chips == node){
-            chips.children[0].style.display = "block";
-            console.log("bonjour les amis");
+            if(chips.getAttribute('isDisplayed') != 'true'){
+                chips.children[0].style.display = "block";
+                chips.setAttribute('isDisplayed', 'true');
+            }else{
+                chips.setAttribute('isDisplayed', 'false');
+            }
+        }else{
+            chips.setAttribute('isDisplayed', 'false');
         }
+
     }
 }
 
