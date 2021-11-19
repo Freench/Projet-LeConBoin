@@ -20,11 +20,12 @@ class CategoryManager extends Db{
     function insertAllSpecificities($lists, $idCategory){
         $listSpecName = $lists[0];
         $listSpecOrder = $lists[1];
+        $listSpecType = $lists[2];
         for($i = 0; $i<count($listSpecName); $i++){
-            $query = 'INSERT INTO donnesspecifiques (num_ordre, nom_data, id_categorie) VALUE (?,?,?)';
+            $query = 'INSERT INTO donnesspecifiques (num_ordre, nom_data, type_data id_categorie) VALUE (?,?,?,?)';
             $pdo = $this->connect();
             $sql = $pdo->prepare($query);
-            $sql->execute([$listSpecOrder[$i], $listSpecName[$i], $idCategory]);
+            $sql->execute([$listSpecOrder[$i], $listSpecName[$i], $listSpecType[$i], $idCategory]);
         }
     }
     function getSpecificitiesByCategory($idCategory){

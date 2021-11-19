@@ -107,7 +107,7 @@ function openAd(){
     $prix = $ad['prix_annonce'];
     $localisation = $ad['localisation_annonce'];
     $description = $ad['description_annonce'];
-    
+
     $photoManager = new PhotoManager();
     $photos = $photoManager->getPhotoByIdAd($idAd);
 
@@ -116,7 +116,7 @@ function openAd(){
     include('view/adPageTemplate.php');
 }
 function openUserPage(){
- 
+
     $idUser = $_GET['idOwner'];
     $userManager = new UserManager();
     $user = $userManager->getUserById($idUser);
@@ -174,8 +174,12 @@ function addNewCategory(){
         foreach($listSpecName as $key=>$value){
             $value = strip_tags($value);
         }
+        $listSpecType = $_GET["type"];
+        foreach($listSpecType as $key=>$value){
+            $value = strip_tags($value);
+        }
         var_dump($listSpecName);
-        return [$listSpecName, $listSpecOrder];
+        return [$listSpecName, $listSpecOrder, $listSpecType];
     }
 
     $name_category = strip_tags($_GET["name-category"]);

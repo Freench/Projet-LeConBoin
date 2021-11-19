@@ -15,13 +15,15 @@
                 <input type="text" class="form-control" id="localisation-recherche" placeholder="Saisissez une ville" name="localisation-research">
             </div>
         </div>
+        <div id="blockMoreResearch"></div>
+
         <div id="btRecherche" class="d-flex">
             <button type="submit" id="btSubmitRecherche" class="btn btn-primary" name="action" value="research">Rechercher</button>
             <div id="btMoreResearch">
-                <img src="public/img/advancedResearch.png">
+                Afficher plus de filtres
+                <!-- <img src="public/img/advancedResearch.png"> -->
             </div>
         </div>
         
-        <div id="blockMoreResearch"><p>coucou</p></div>
     </div>
 </form>

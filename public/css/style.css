@@ -1,5 +1,6 @@
 body{
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(250, 255, 245);
+    font-family: OpenSans;
 }
 
 .display-none{
@@ -96,6 +97,7 @@ form{
     width: 80%;
     margin: 20px auto;
     padding: 20px;
+    border: 1px solid rgb(24, 146, 71);
 }
 
 .bouttonAnnonce{
@@ -132,10 +134,22 @@ form{
 }
 
 #btRecherche{
-    justify-content: center;
-    margin: 2vh 0 2vh 0;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
 }
-
+#btSubmitRecherche{
+    background-color: #e9bc2a;
+    border: 1px solid #cea625;
+}
+.btn{
+    background-color: #e9bc2a;
+    border: 1px solid #cea625;
+}
 #Deco{
     margin-left: 50%;
     white-space: nowrap;
@@ -147,6 +161,8 @@ form{
 
 #legend{
     justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .specificitees{
@@ -279,6 +295,8 @@ select{
 #btMoreResearch{
     width: max-content;
     margin-left: 10%;
+    font-weight: 500;
+    color: #cea625;
 }
 
 #btMoreResearch:hover{
@@ -291,10 +309,11 @@ select{
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-top: 10px;
 }
 
 #blockMoreResearch select{
-    width: 50%;
+    width: 100%;
     margin: auto;
 }
 
@@ -372,9 +391,6 @@ select{
     margin-top: 25px;
 }
 
-#btSubmitRecherche{
-    margin-left: 10%;
-}
 
 .txtModal{
     margin-left: 10px;
@@ -387,4 +403,13 @@ select{
 #boxContact{
     width: 60%;
     margin:auto;
+}
+.chipsModified{
+    border: solid 1px rgb(24, 146, 71);
+    color: rgb(24, 146, 71);
+}
+
+@font-face {
+    font-family: OpenSans;
+    src: url('../fonts/OpenSans-Regular.ttf');
 }

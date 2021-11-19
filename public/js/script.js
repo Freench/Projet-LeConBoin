@@ -30,6 +30,14 @@ function addLine(numero){
     input2.type = "text";
     input2.name = "values[]";
     input2.placeholder= "Nom critère";
+
+    span3 = document.createElement('span');
+    span3.innerText = "Type de valeur :";
+    input3 = document.createElement('input');
+    input3.type = "text";
+    input3.name = "type[]";
+    input3.placeholder= "Type de valeur";
+
     lineBreak = document.createElement('br');
 
 
@@ -37,6 +45,8 @@ function addLine(numero){
     form.appendChild(input1);
     form.appendChild(span2);
     form.appendChild(input2);
+    form.appendChild(span3);
+    form.appendChild(input3);
     form.appendChild(lineBreak);
 }
 
@@ -167,36 +177,103 @@ function genereChipsSpecificite(node , specificites){
         // let nameVal = specificite['nom_data'].toLowerCase();
         // input.setAttribute('name',nameVal)
         // input.placeholder = chips.getAttribute('specificite');
+        
+        if(specificite['type_data'] == "number" || specificite['type_data'] == "text"){
+            let input = document.createElement('input');
+            input.placeholder = specificite['nom_data'];
+            input.name = "values[]";
+            input.type = specificite['type_data'];
+
+            input.addEventListener("change", function(){
+                if(input.value != ""){
+                    input.parentElement.parentElement.parentElement.classList.add('chipsModified');
+                }
+                else{
+                    input.parentElement.parentElement.parentElement.classList.remove('chipsModified');
+                }
+            });
+            divCardBody.appendChild(input);
+
+            let inputShadow = document.createElement('input');
+            inputShadow.value = specificite['num_ordre'];
+            inputShadow.name = "orders[]";
+            inputShadow.setAttribute('type','hidden');
+            divCardBody.appendChild(inputShadow);
+        }else{
+            let inputShadow = document.createElement('input');
+            inputShadow.value = specificite['num_ordre'];
+            inputShadow.name = "orders[]";
+            inputShadow.setAttribute('type','hidden');
+            divCardBody.appendChild(inputShadow);
 
 
-        let input = document.createElement('input');
-        input.placeholder = specificite['nom_data'];
-        input.name = "values[]";
-        divCardBody.appendChild(input);
-        let inputShadow = document.createElement('input');
-        inputShadow.value = specificite['num_ordre'];
-        inputShadow.name = "orders[]";
-        inputShadow.setAttribute('type','hidden');
-        divCardBody.appendChild(inputShadow);
+            let selector = document.createElement('select');
+            selector.name = "values[]";
+
+            let optionPreSelected = document.createElement('option');
+            optionPreSelected.disabled = true;
+            optionPreSelected.selected = true;
+            optionPreSelected.value = "";
+            optionPreSelected.innerText = specificite['nom_data'];
+            selector.appendChild(optionPreSelected);
+    
+            options = specificite['type_data'].split(',');
+            console.log(options)
+            for(oneOption of options){
+
+                let option = document.createElement('option');
+                option.innerText = oneOption;
+                option.value = oneOption;
+                selector.appendChild(option);
+            }
+
+            selector.addEventListener("change", function(){
+                if(selector.value != ""){
+                    selector.parentElement.parentElement.parentElement.classList.add('chipsModified');
+                }
+                else{
+                    selector.parentElement.parentElement.parentElement.classList.remove('chipsModified');
+
+                }
+            });
+            divCardBody.appendChild(selector)
+        }
+        
+
+
+        // let input = document.createElement('input');
+        // input.placeholder = specificite['nom_data'];
+        // input.name = "values[]";
+        // divCardBody.appendChild(input);
+        // let inputShadow = document.createElement('input');
+        // inputShadow.value = specificite['num_ordre'];
+        // inputShadow.name = "orders[]";
+        // inputShadow.setAttribute('type','hidden');
+        // divCardBody.appendChild(inputShadow);
 
 
 
         
-        divCardBody.appendChild(input);
+        // divCardBody.appendChild(input);
         divCard.appendChild(divCardBody);
         chips.appendChild(divCard);
 
-        chips.addEventListener("click", function(){
-            modalSpecificity(chips);
+        chips.addEventListener("click", function(e){
+            if(e.target === e.currentTarget){
+                modalSpecificity(chips);
+            }
         })
         block_resarch.appendChild(chips);        
     }
 }
+    
 
 //Toggle More research
 btn_resarch_more.addEventListener("click", function(){
+    btMoreResearch.style.display = 'none';
     block_resarch.style.display = "flex";
-})
+});
+
 
 
 function modalSpecificity(node){
@@ -205,6 +282,8 @@ function modalSpecificity(node){
     for(chips of childsOfParent){
         chips.children[0].style.display = "none";
         if(chips == node){
+            // chips.children[0].style.display = "block";
+
             if(chips.getAttribute('isDisplayed') != 'true'){
                 chips.children[0].style.display = "block";
                 chips.setAttribute('isDisplayed', 'true');
